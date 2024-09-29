@@ -3,4 +3,6 @@
 *.json.gz
 
 # Ignore data directories
-# add the path to data here: e.g. /path/to/data/
+game-changers/
+vct-international/
+vct-challengers/

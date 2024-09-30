@@ -22,6 +22,8 @@ def download_gzip_and_write_to_json(file_name):
     remote_file = f"{S3_BUCKET_URL}/{file_name}.json.gz"
     response = requests.get(remote_file, stream=True)
 
+    if file_name[28] == ":":
+        file_name = file_name.replace(":", "_")
     if response.status_code == 200:
         gzip_bytes = BytesIO(response.content)
         with gzip.GzipFile(fileobj=gzip_bytes, mode="rb") as gzipped_file:

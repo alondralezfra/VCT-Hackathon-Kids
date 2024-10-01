@@ -21,8 +21,15 @@ def download_gzip_and_write_to_json(file_name):
 
     remote_file = f"{S3_BUCKET_URL}/{file_name}.json.gz"
     response = requests.get(remote_file, stream=True)
+    
 
-    if file_name[28] == ":":
+
+    # CHANGE THE VALUE OF file_name WHEN CHANGING WHAT DATA TO DOWNLOAD
+    gm_change = 28
+    vct_int = 32
+    vct_chall = 30
+
+    if file_name[gm_change] == ":":
         file_name = file_name.replace(":", "_")
     if response.status_code == 200:
         gzip_bytes = BytesIO(response.content)
@@ -78,8 +85,7 @@ def download_games():
         if response == True:
             game_counter += 1
             if game_counter % 10 == 0:
-                print(f"----- Processed {game_counter} games, current run time: {
-                    round((time.time() - start_time)/60, 2)} minutes")
+                print(f"----- Processed {game_counter} games, current run time: {round((time.time() - start_time)/60, 2)} minutes")
 
 
 if __name__ == "__main__":
